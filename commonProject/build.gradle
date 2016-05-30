@@ -1,0 +1,16 @@
+configurations{
+	sharedContent
+}
+
+artifacts{
+	sharedContent distZip
+}
+
+distributions{
+	main {
+		baseName = 'distro'
+		contents{
+			from 'src'
+		}
+	}
+}

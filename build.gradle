@@ -1,0 +1,23 @@
+/**
+http://stackoverflow.com/questions/37403298/individual-distributions-for-gradle-multi-project
+
+        Individual distributions for Gradle multi-project
+        I have a number of very similar (non-Java) projects that needs to generate Zip/Tar distribution. Generally each project simply has a distributions section that copies various files/directories and assembles the archive. I would like to extract common code to the separate "common" project but perform the build from the child project(s) so I can generate one archive based on the flavor I need. The common code is simply a directory(s) that need to be included into archive(s)
+
+I probably will never run a build from the parent to generate multiple distributions.
+
+I need to copy common files first and then add/overwrite files from the child project. I looked at examples from samples/userguide/multiproject and would like to use a flat structure. But these examples are pretty spartan so any examples would be greatly appreciated!
+
+**/
+
+// Proof of concept of possible solution
+
+// Generated distribution.zip contains content of the commonProject (/src) overwritten by arbitrary files in projectA or projectB
+
+apply plugin: 'base'
+
+subprojects{
+	// I assume this plugin is being used by the OP, but desired functionality could be achieved with Zip and Tar tasks as well.
+	// the plugin is given here (root build script) for no special reason, it could be specified at each of the sub projects separately.
+	apply plugin: 'distribution'
+}
